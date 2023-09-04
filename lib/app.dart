@@ -13,13 +13,18 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // GoRouter を使用している
     final router = ref.watch(routerProvider);
+    // ライト or ダークテーマ設定を MaterialApp より外側で更新監視を行うことで
+    // 本体設定およびアプリ設定のすぐに繁栄できる。
     final themeMode = ref.watch(themeModeNotifierProvider);
     final appLocale = ref.watch(appLocaleProvider);
 
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) {
+        // ライトテーマ取得
         final theme = ref.watch(themeProvider(lightDynamic));
+        // ダークテーマを取得
         final darkTheme = ref.watch(darkThemeProvider(darkDynamic));
 
         return MaterialApp.router(
