@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 part 'shared_preferences.g.dart';
 
+/// Riverpod generator のための自動生成の定義
 @riverpod
 SharedPreferences sharedPreferences(
   SharedPreferencesRef ref,
