@@ -9,14 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+/// ここが最も親の画面
 class RootScreen extends ConsumerWidget {
   const RootScreen({
     super.key,
     required this.navigator,
   });
 
+  /// コンテンツ本体
   final Widget navigator;
 
+  /// 現在の選択タブを取得
   RootTab _getCurrentTab(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
     return RootTab.values.reversed.firstWhere(
@@ -29,6 +32,7 @@ class RootScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final localization = ref.watch(localizationProvider);
 
+    // 画面サイズは3種類ある (compact, medium, expanded)
     final screenSize = context.screenSize;
     final currentTab = _getCurrentTab(context);
 
