@@ -13,13 +13,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+  // runApp が呼ばれる前の初期化処理
   WidgetsFlutterBinding.ensureInitialized();
-
+  // Flutter のパスをURLのパスにする。
+  // Web だけ動作する処理
   updatePathStrategy();
   await Firebase.initializeApp(
     options: firebaseOptionsWeb,
   );
 
+  // Firebase Crashlytics で例外を送信する
   // Non-async exceptions
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
@@ -33,9 +36,9 @@ void main() async {
   /// initialize firebase apps
   await initFirebaseRemoteConfig();
   await initFirebaseMessaging();
-
+  // ライセンス表示のカスタマイズ
   fontLicenses();
-
+  // 設定の取得
   final pref = await SharedPreferences.getInstance();
 
   runApp(

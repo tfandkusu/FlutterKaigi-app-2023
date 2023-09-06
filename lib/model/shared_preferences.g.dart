@@ -8,7 +8,9 @@ part of 'shared_preferences.dart';
 
 String _$sharedPreferencesHash() => r'e6f4d39542a6ab94c755f0dc5f02e08f1478a631';
 
-/// See also [sharedPreferences].
+/// Riverpod generator のための自動生成の定義
+///
+/// Copied from [sharedPreferences].
 @ProviderFor(sharedPreferences)
 final sharedPreferencesProvider =
     AutoDisposeProvider<SharedPreferences>.internal(

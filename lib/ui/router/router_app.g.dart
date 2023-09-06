@@ -15,12 +15,12 @@ RouteBase get $rootRoute => ShellRouteData.$route(
       factory: $RootRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: '/',
-          factory: $HomeRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
           path: '/sessions',
           factory: $SessionsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/',
+          factory: $HomeRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: '/sponsors',
@@ -61,11 +61,11 @@ extension $RootRouteExtension on RootRoute {
   static RootRoute _fromState(GoRouterState state) => const RootRoute();
 }
 
-extension $HomeRouteExtension on HomeRoute {
-  static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
+extension $SessionsRouteExtension on SessionsRoute {
+  static SessionsRoute _fromState(GoRouterState state) => const SessionsRoute();
 
   String get location => GoRouteData.$location(
-        '/',
+        '/sessions',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -78,11 +78,11 @@ extension $HomeRouteExtension on HomeRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SessionsRouteExtension on SessionsRoute {
-  static SessionsRoute _fromState(GoRouterState state) => const SessionsRoute();
+extension $HomeRouteExtension on HomeRoute {
+  static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   String get location => GoRouteData.$location(
-        '/sessions',
+        '/',
       );
 
   void go(BuildContext context) => context.go(location);
